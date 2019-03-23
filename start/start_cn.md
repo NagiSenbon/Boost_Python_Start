@@ -1,6 +1,6 @@
 # Boost::Python 入坑随笔 （一）
 
-> ![](https://raw.githubusercontent.com/NagiSenbon/Boost_Python_Start/master/pic/Amazarashi.jpg?token=AiXozc_KNjHgxGuxE-2n69LvcoHLmmN4ks5claFwwA%3D%3D)
+![](https://github.com/NagiSenbon/Boost_Python_Start/raw/master/pic/Amazarashi.jpg)
 
 <!-- TOC -->
 
