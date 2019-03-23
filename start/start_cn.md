@@ -17,12 +17,18 @@
 
 # 前言
 
-[_Boost::Python_](https://wiki.python.org/moin/boost.python) 是 C++ [Boost](https://www.boost.org/) 库中的一个与 Python 交互的模块。[Boost](https://www.boost.org/) 这个库本身有多么神奇就不必多说了，我们还是来谈谈 Boost::Python。
-Python 本身就有一个很好的 Python/C API，可以用于 C/C++ 与 Python 的交互。比如用 C++ 编写一个模块，然后 Python 来调用该模块，这种方式能在保证性能的前提下，又不失 [Pythonic](https://docs.python-guide.org/writing/style/)，何乐而不为呢。
+[_Boost::Python_](https://wiki.python.org/moin/boost.python) 是 C++ [Boost](https://www.boost.org/) 库中的一个与 Python 交互的模块。Boost 这个库本身有多么神奇就不必多说了，我们还是来谈谈 Boost::Python。
+Python 本身就有一个很好的 [Python / C API](https://docs.python.org/3/c-api/intro.html)，可用于 Python 与 C / C++ 的交互。比如用 C++ 编写一个模块，然后 Python 来调用该模块，这种方式能在保证性能的前提下，又不失 [Pythonic](https://docs.python-guide.org/writing/style/)，何乐而不为呢。
 
+> [Python 之禅](http://note.qidong.name/2018/01/the-zen-of-python/)
 >
+> **优美胜于丑陋** ( _Python_ 以编写优美的代码为目标 )
+> **明了胜于晦涩** ( 优美的代码应当是明了的，命名规范，风格相似 )
+> **简洁胜于复杂** ( 优美的代码应当是简洁的，不要有复杂的内部实现 )
+> **复杂胜于凌乱** ( 如果复杂不可避免，那代码间也不能有难懂的关系，要保持接口简洁 )
+> **...**
 
-而 Boost::Python 就是一个高度封装好的 Python/C API，它能简化 C++ 代码，使得为 Python 编写 C++ 扩展更为简单方便。出于此原因，我也就开始了我的 Boost::Python 入坑之旅。
+而 Boost::Python 就是一个高度封装好的 Python / C API，它能简化 C++ 代码，使得为 Python 编写 C++ 扩展更为简单方便。出于此原因，我也就开始了我的 Boost::Python 入坑之旅。
 
 ---
 
@@ -47,7 +53,7 @@ Python 本身就有一个很好的 Python/C API，可以用于 C/C++ 与 Python 
 
 解压之前下载好了的 `boost_1_69_0.zip` ( or `boost_1_69_0.7z` ) 文件。打开解压好的`boost_1_69_0`文件夹，在该文件夹下新建一个`user-config.txt`文件，并在里边加上几句话:
 
-```c++
+```cpp
 using msvc : 14.1;
 
 using python	: 3.7
@@ -56,8 +62,10 @@ using python	: 3.7
 		: "C:/Users/user name/Anaconda3/libs" ;
 ```
 
+
 ---
 
 # 引用
 
-> [Pythonic Code Style](https://docs.python-guide.org/writing/style/) > [ Zen of Python (PEP 20)](https://www.python.org/dev/peps/pep-0020/)
+[Pythonic Code Style](https://docs.python-guide.org/writing/style/)
+[Zen of Python (PEP 20)](https://www.python.org/dev/peps/pep-0020/)
