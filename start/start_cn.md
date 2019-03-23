@@ -147,7 +147,7 @@ Boost 库提供了强大的编译工具 `b2.exe` 和 `bjam.exe` ，其中 `b2.ex
 - 库目录同理，加上 Anaconda 安装目录中的 `libs` 目录以及`--prefix="g:\boost"`指定目录下的 `lib`，如下:
   ```shell
   C:\Users\user name\Anaconda3\libs
-  G:\boost\bin
+  G:\boost\lib
   ```
   注 : 这步完成后，切记别忘了点 `确定`。
 
