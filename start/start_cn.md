@@ -13,6 +13,7 @@
 			- [b2 / bjam 部分命令参数说明](#b2--bjam-%E9%83%A8%E5%88%86%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E)
 	- [使用及测试](#%E4%BD%BF%E7%94%A8%E5%8F%8A%E6%B5%8B%E8%AF%95)
 		- [创建项目并配置 Boost::Python](#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE%E5%B9%B6%E9%85%8D%E7%BD%AE-boostpython)
+		- [测试 Hello Boost Python](#%E6%B5%8B%E8%AF%95-hello-boost-python)
 	- [引用及参考](#%E5%BC%95%E7%94%A8%E5%8F%8A%E5%8F%82%E8%80%83)
 
 <!-- /TOC -->
@@ -36,7 +37,7 @@ Python 本身就有一个很好的 [Python / C API](https://docs.python.org/3/c-
 >
 > **...**
 
-而 Boost::Python 就是一个高度封装好的 Python / C API，它能简化 C++ 代码，使得为 Python 编写 C++ 扩展更为简单方便。甚至还能以 OOP 风格在 C++ 中编写 Python 对象的操作。Pythonic 即为正义╰(￣ω￣ｏ)。因此，我也开始了我的 Boost::Python 入坑之旅。
+而 Boost::Python 就是一个高度封装好的 Python / C API，它能简化 C++ 代码，使得为 Python 编写 C++ 扩展更为简单方便。甚至还能以 OOP 风格在 C++ 中编写 Python 对象的操作。Pythonic 即为正义 ╰(￣ ω ￣ｏ)。因此，我也开始了我的 Boost::Python 入坑之旅。
 
 ---
 
@@ -124,14 +125,78 @@ Boost 库提供了强大的编译工具 `b2.exe` 和 `bjam.exe` ，其中 `b2.ex
 走起 ヾ(•ω•`)o
 
 ### 创建项目并配置 Boost::Python
+
 打开 VS 2017 并创建一个 C++ 空项目 `HelloBoostPython`
 ![](https://github.com/NagiSenbon/Boost_Python_Start/raw/master/pic/start/Hello_Preject.png)
-将工具栏那的改为 `Release  x64`
+将工具栏那的改为 `Release x64`
 ![](https://github.com/NagiSenbon/Boost_Python_Start/raw/master/pic/start/Release_x64.png)
 接下来打开项目属性，即解决方案管理器中选择该项目 右键->属性
 ![](https://github.com/NagiSenbon/Boost_Python_Start/raw/master/pic/start/Solutions.png)
+在 配置属性->常规 中修改目标文件名( `Hello_Boost` )及其扩展名( `.pyd` )，配置类型改为 `动态库(.dll)`
 ![](https://github.com/NagiSenbon/Boost_Python_Start/raw/master/pic/start/Set.png)
+然后转到 配置属性->VC++目录
+![](https://github.com/NagiSenbon/Boost_Python_Start/raw/master/pic/start/includePath.png)
 
+- 包含目录中加上 Anaconda 安装目录中的 `include` 目录，以及之前编译时`--prefix="g:\boost"` 指定的那个目录下的 `\include\boost-1_69` ,如下所示:
+
+  ```shell
+  C:\Users\user name\Anaconda3\include
+  G:\boost\include\boost-1_69
+  ```
+
+- 库目录同理，加上 Anaconda 安装目录中的 `libs` 目录以及`--prefix="g:\boost"`指定目录下的 `lib`，如下:
+  ```shell
+  C:\Users\user name\Anaconda3\libs
+  G:\boost\bin
+  ```
+  注 : 这步完成后，切记别忘了点 `确定`。
+
+### 测试 Hello Boost Python
+
+向项目中添加一个 `main.cpp` 文件，并加入以下代码:
+
+```cpp
+// File : main.cpp
+// 不在 #include <boost/python/...> 之前加上下面的宏定义的话
+// 编译器会默认使用 Boost::Python 的动态链接库
+#define BOOST_PYTHON_STATIC_LIB
+
+#include <boost/python/module.hpp>
+#include <boost/python/def.hpp>
+
+
+const char * hello_boost() {
+	return "Hello Boost::Python!";
+}
+
+const char * hello_world() {
+	return "Hello World!";
+}
+
+
+// 此处 Hello_Boost 应该与之前设置的目标文件扩展名一致
+// 否则自行尝试 ╮(╯▽╰)╭
+BOOST_PYTHON_MODULE( Hello_Boost ) {
+	using namespace boost::python;
+	def( "hello_boost", hello_boost );
+	def( "hello_world", hello_world );
+}
+```
+
+接下来按 `Ctrl + F7` 编译，可能会遇到一个神奇的错误
+
+```shell
+error C3861: 'unwind_type': identifier not found
+```
+
+如果用的是最新版的 VS 2017 的话，肯定会碰上这个问题，这个问题似乎只会发生在 `msvc 14.16` 及以上的版本中。不要慌，问题不大，因为我在 [Github](https://github.com/boostorg/python/issues/228) 中找到了解决方法。
+
+```py
+include / boost / python / detail / unwind_type.hpp
+```
+
+找到上边这个文件，将里边所有的 `#ifndef _MSC_VER` 改为 `#if (!defined(_MSC_VER) || _MSC_VER >= 1915)`，具体可参考 [Here](https://github.com/bowie7070/python/commit/58a096bead4d9a43209ea86886f634e02a706914)。
+这样编译应该就没问题了，编译后会生成一个 `Hello_Boost.pyd` 文件，即 Python 的动态链接库文件。
 
 ---
 
