@@ -69,11 +69,12 @@ using python	: 3.7
 
 ## 编译
 
-Boost 库提供了编译工具 `b2.exe` 和 `bjam.exe` ，其中 `b2.exe` 为新版本的编译工具，我们使用它来编译 Boost::Python 64位静态库。在 `boost_1_69_0` 文件夹下打开命令行 ( Powershell 等)，输入以下命令回车即可。
+Boost 库提供了编译工具 `b2.exe` 和 `bjam.exe` ，其中 `b2.exe` 为新版本的编译工具，我们使用它来编译 Boost::Python 64 位静态库。在 `boost_1_69_0` 文件夹下打开命令行 ( Powershell 等)，输入以下命令回车即可。
 
 ```shell
 .\b2 --with-python --prefix="g:\boost" install toolset=msvc-14.1 link=static address-model=64
 ```
+
 该指令会同时编译 `Release` 和 `Dubug` 版本，若要单独编译某一个版本，则可使用以下指令:
 
 - Release 版
@@ -105,7 +106,7 @@ Boost 库提供了编译工具 `b2.exe` 和 `bjam.exe` ，其中 `b2.exe` 为新
   即指定编译为动态库还是静态库 ( `.dll | .lib` )，`shared` 即编译为动态库，`static` 即为静态库。我们选择的是编译为静态库。一般而言静态库体积要大一些，但不用带 Boost::Python 的 DLL 文件，部署和使用也较为方便; 动态库的话相对体积较小(也小不了多少)，但必须用带 Boost::Python 的 DLL 文件。选择静态库还是动态库这个得自己取舍。
 
 - `address-model`
-  指定编译为32位还是64位，我们指定 `address-model=64` 即编译为64位。
+  指定编译为 32 位还是 64 位，我们指定 `address-model=64` 即编译为 64 位。
 
 ---
 
