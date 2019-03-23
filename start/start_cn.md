@@ -1,16 +1,18 @@
-# Boost::Python 入坑随笔 （一）
+# Boost::Python 入坑随笔 （一）: 编译安装及 Hello World ! (。・∀・)ノ
 
 ![](https://github.com/NagiSenbon/Boost_Python_Start/raw/master/pic/Amazarashi.jpg)
 
 <!-- TOC -->
 
-- [Boost::Python 入坑随笔 （一）](#boostpython-%E5%85%A5%E5%9D%91%E9%9A%8F%E7%AC%94-%E4%B8%80)
+- [Boost::Python 入坑随笔 （一）: 编译安装及 Hello World ! (。・∀・)ノ](#boostpython-%E5%85%A5%E5%9D%91%E9%9A%8F%E7%AC%94-%E4%B8%80-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E5%8F%8A-hello-world--%E3%83%BB%E2%88%80%E3%83%BB%E3%83%8E)
 - [前言](#%E5%89%8D%E8%A8%80)
 - [环境](#%E7%8E%AF%E5%A2%83)
 - [编译 Boost 库](#%E7%BC%96%E8%AF%91-boost-%E5%BA%93)
 	- [创建 `user-config.jam` 文件](#%E5%88%9B%E5%BB%BA-user-configjam-%E6%96%87%E4%BB%B6)
 	- [编译](#%E7%BC%96%E8%AF%91)
-		- [b2 / bjam 部分命令参数说明 :](#b2--bjam-%E9%83%A8%E5%88%86%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E)
+		- [b2 / bjam 部分命令参数说明](#b2--bjam-%E9%83%A8%E5%88%86%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E)
+- [使用及测试](#%E4%BD%BF%E7%94%A8%E5%8F%8A%E6%B5%8B%E8%AF%95)
+	- [创建项目](#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE)
 - [引用及参考](#%E5%BC%95%E7%94%A8%E5%8F%8A%E5%8F%82%E8%80%83)
 
 <!-- /TOC -->
@@ -53,7 +55,7 @@ Python 本身就有一个很好的 [Python / C API](https://docs.python.org/3/c-
 
 # 编译 Boost 库
 
-编译应该是我踩坑过程当中遇到的最为繁杂的一步了，好在现在已经轻车熟路。不要慌，一步一步来。实际上 Boost 较早一些的版本是提供了 Windows 下预编译好的二进制包的，比如 [`Boost 1.67`](https://www.boost.org/users/history/version_1_67_0.html)。但是它里边编译好的是 Python 2.7 的，所以想要对应自己 Python 版本的 Boost::Python，还是得自己编译 (￣ ▽ ￣)"
+编译应该是我踩坑过程当中遇到的最为繁杂的一步了，好在现在已经轻车熟路。不要慌，一步一步来。实际上 Boost 较早一些的版本是提供了 Windows 预编译二进制包的，比如 [`Boost 1.67`](https://www.boost.org/users/history/version_1_67_0.html)。但是它里边编译好的是 Python 2.7 的，所以想要自己对应 Python 版本的 Boost::Python，还是得自己编译 (￣ ▽ ￣)"
 
 ## 创建 `user-config.jam` 文件
 
@@ -95,7 +97,7 @@ Boost 库提供了编译工具 `b2.exe` 和 `bjam.exe` ，其中 `b2.exe` 为新
 
 注:由于还要复制各种头文件，所以总耗时大概 10 ~ 20 min。
 
-### b2 / bjam 部分命令参数说明 :
+### b2 / bjam 部分命令参数说明
 
 - `--with-` | `--without-`
   `--with-` 后面接要编译的 Boost 的库名，如 `--with-python` 即仅编译 Boost::Python 库。相对的，`--without-python` 即为编译除 Boost::Python 之外全部库。如果要编译 ( 或不编译 ) 多个库的话，可用多条 `with | without` 语句来指定，缺省则为全部编译。
@@ -112,6 +114,16 @@ Boost 库提供了编译工具 `b2.exe` 和 `bjam.exe` ，其中 `b2.exe` 为新
 
 - `address-model`
   指定编译为 32 位还是 64 位，我们指定 `address-model=64` 即编译为 64 位。
+
+---
+
+# 使用及测试
+
+编译好后怎么能少的了来一个 `Hello World！` 呢？常言道:" 没有经过 `Hello World！` 洗礼的代码是没有灵魂的！"。走起 ~
+
+## 创建项目
+
+###
 
 ---
 
