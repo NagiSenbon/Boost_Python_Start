@@ -12,7 +12,7 @@
 		- [编译](#%E7%BC%96%E8%AF%91)
 			- [b2 / bjam 部分命令参数说明](#b2--bjam-%E9%83%A8%E5%88%86%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E)
 	- [使用及测试](#%E4%BD%BF%E7%94%A8%E5%8F%8A%E6%B5%8B%E8%AF%95)
-		- [创建项目](#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE)
+		- [创建项目并配置 Boost::Python](#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE%E5%B9%B6%E9%85%8D%E7%BD%AE-boostpython)
 	- [引用及参考](#%E5%BC%95%E7%94%A8%E5%8F%8A%E5%8F%82%E8%80%83)
 
 <!-- /TOC -->
@@ -123,8 +123,15 @@ Boost 库提供了强大的编译工具 `b2.exe` 和 `bjam.exe` ，其中 `b2.ex
 
 走起 ヾ(•ω•`)o
 
-### 创建项目
-打开 VS 2017 并创建一个空项目，
+### 创建项目并配置 Boost::Python
+打开 VS 2017 并创建一个 C++ 空项目 `HelloBoostPython`
+![](https://github.com/NagiSenbon/Boost_Python_Start/raw/master/pic/start/Hello_Preject.png)
+将工具栏那的改为 `Release  x64`
+![](https://github.com/NagiSenbon/Boost_Python_Start/raw/master/pic/start/Release_x64.png)
+接下来打开项目属性，即解决方案管理器中选择该项目 右键->属性
+![](https://github.com/NagiSenbon/Boost_Python_Start/raw/master/pic/start/Solutions.png)
+![](https://github.com/NagiSenbon/Boost_Python_Start/raw/master/pic/start/Set.png)
+
 
 ---
 
