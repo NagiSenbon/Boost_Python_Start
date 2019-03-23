@@ -5,21 +5,21 @@
 <!-- TOC -->
 
 - [Boost::Python 入坑随笔 （一）: 编译安装及 Hello World ! (。・∀・)ノ](#boostpython-%E5%85%A5%E5%9D%91%E9%9A%8F%E7%AC%94-%E4%B8%80-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E5%8F%8A-hello-world--%E3%83%BB%E2%88%80%E3%83%BB%E3%83%8E)
-- [前言](#%E5%89%8D%E8%A8%80)
-- [环境](#%E7%8E%AF%E5%A2%83)
-- [编译 Boost 库](#%E7%BC%96%E8%AF%91-boost-%E5%BA%93)
-	- [创建 `user-config.jam` 文件](#%E5%88%9B%E5%BB%BA-user-configjam-%E6%96%87%E4%BB%B6)
-	- [编译](#%E7%BC%96%E8%AF%91)
-		- [b2 / bjam 部分命令参数说明](#b2--bjam-%E9%83%A8%E5%88%86%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E)
-- [使用及测试](#%E4%BD%BF%E7%94%A8%E5%8F%8A%E6%B5%8B%E8%AF%95)
-	- [创建项目](#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE)
-- [引用及参考](#%E5%BC%95%E7%94%A8%E5%8F%8A%E5%8F%82%E8%80%83)
+	- [前言](#%E5%89%8D%E8%A8%80)
+	- [环境](#%E7%8E%AF%E5%A2%83)
+	- [编译 Boost 库](#%E7%BC%96%E8%AF%91-boost-%E5%BA%93)
+		- [创建 `user-config.jam` 文件](#%E5%88%9B%E5%BB%BA-user-configjam-%E6%96%87%E4%BB%B6)
+		- [编译](#%E7%BC%96%E8%AF%91)
+			- [b2 / bjam 部分命令参数说明](#b2--bjam-%E9%83%A8%E5%88%86%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E)
+	- [使用及测试](#%E4%BD%BF%E7%94%A8%E5%8F%8A%E6%B5%8B%E8%AF%95)
+		- [创建项目](#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE)
+	- [引用及参考](#%E5%BC%95%E7%94%A8%E5%8F%8A%E5%8F%82%E8%80%83)
 
 <!-- /TOC -->
 
 ---
 
-# 前言
+## 前言
 
 [_Boost::Python_](https://wiki.python.org/moin/boost.python) 是 C++ [Boost](https://www.boost.org/) 库中的一个与 Python 交互的模块。Boost 这个库本身有多么神奇就不必多说了，我们还是来谈谈 Boost::Python。
 Python 本身就有一个很好的 [Python / C API](https://docs.python.org/3/c-api/intro.html)，可用于 Python 与 C / C++ 的交互。比如用 C++ 编写一个模块，然后 Python 来调用该模块，这种方式能在保证性能的前提下，又不失 [Pythonic](https://docs.python-guide.org/writing/style/)，何乐而不为呢。
@@ -40,7 +40,7 @@ Python 本身就有一个很好的 [Python / C API](https://docs.python.org/3/c-
 
 ---
 
-# 环境
+## 环境
 
 先说说我的环境配置:
 
@@ -53,11 +53,11 @@ Python 本身就有一个很好的 [Python / C API](https://docs.python.org/3/c-
 
 ---
 
-# 编译 Boost 库
+## 编译 Boost 库
 
 编译应该是我踩坑过程当中遇到的最为繁杂的一步了，好在现在已经轻车熟路。不要慌，一步一步来。实际上 Boost 较早一些的版本是提供了 Windows 预编译二进制包的，比如 [`Boost 1.67`](https://www.boost.org/users/history/version_1_67_0.html)。但是它里边编译好的是 Python 2.7 的，所以想要自己对应 Python 版本的 Boost::Python，还是得自己编译 (￣ ▽ ￣)"
 
-## 创建 `user-config.jam` 文件
+### 创建 `user-config.jam` 文件
 
 解压之前下载好了的 `boost_1_69_0.zip` ( or `boost_1_69_0.7z` ) 文件。打开解压好的 `boost_1_69_0` 文件夹，在该文件夹下新建一个 `user-config.txt` 文件，并在里边加上几句:
 
@@ -71,9 +71,9 @@ using python	: 3.7
 		: "C:\Users\user name\Anaconda3\libs" ;
 ```
 
-其中 `using msvc : 14.1` 是指定编译器为 `msvc 14.1` 即 VS 2017，如果是 VS 2015 的话则填 `using msvc : 14.0` 。 `using python` 则是指定 Python 版本及其路径，因为我用的是 Anaconda Python 3.7.1，所以第一处填 3.7，第二处则是 Anaconda 根目录下的 `python.exe` 的目录。第三四处也是在 Anaconda 根目录下，注意顺序和符号填进去就行了。切记版本号和路径填你自己的，别只复制粘贴。保存 `user-config.txt` 文件后并将其后缀修改为 `.jam` ，即 `user-config.jam` 。
+其中 `using msvc : 14.1` 是指定编译器为 `msvc 14.1` 即 VS 2017，如果是 VS 2015 的话则填 `using msvc : 14.0` 。 `using python` 则是指定 Python 版本及其路径，因为我用的是 Anaconda Python 3.7.2，所以第一处填 3.7，第二处则是 Anaconda 根目录下的 `python.exe` 的目录。第三四处也是在 Anaconda 根目录下，注意顺序和符号填进去就行了。切记版本号和路径填你自己的，别只复制粘贴。保存 `user-config.txt` 文件后并将其后缀修改为 `.jam` ，即 `user-config.jam` 。
 
-## 编译
+### 编译
 
 Boost 库提供了编译工具 `b2.exe` 和 `bjam.exe` ，其中 `b2.exe` 为新版本的编译工具，我们使用它来编译 Boost::Python 64 位静态库。在 `boost_1_69_0` 文件夹下打开命令行 ( Powershell 等)，输入以下命令回车即可。
 
@@ -97,7 +97,7 @@ Boost 库提供了编译工具 `b2.exe` 和 `bjam.exe` ，其中 `b2.exe` 为新
 
 注:由于还要复制各种头文件，所以总耗时大概 10 ~ 20 min。
 
-### b2 / bjam 部分命令参数说明
+#### b2 / bjam 部分命令参数说明
 
 - `--with-` | `--without-`
   `--with-` 后面接要编译的 Boost 的库名，如 `--with-python` 即仅编译 Boost::Python 库。相对的，`--without-python` 即为编译除 Boost::Python 之外全部库。如果要编译 ( 或不编译 ) 多个库的话，可用多条 `with | without` 语句来指定，缺省则为全部编译。
@@ -117,17 +117,17 @@ Boost 库提供了编译工具 `b2.exe` 和 `bjam.exe` ，其中 `b2.exe` 为新
 
 ---
 
-# 使用及测试
+## 使用及测试
 
-编译好后怎么能少的了来一个 `Hello World！` 呢？常言道:" 没有经过 `Hello World！` 洗礼的代码是没有灵魂的！"。走起 ~
+编译好后怎么能少的了来一个 `Hello World！` 呢？常言道:" 没有经过 `Hello World！` 洗礼的代码是没有灵魂的！"。走起 ヾ(•ω•`)o
 
-## 创建项目
+### 创建项目
 
-###
+####
 
 ---
 
-# 引用及参考
+## 引用及参考
 
 > [Pythonic Code Style](https://docs.python-guide.org/writing/style/)
 >
