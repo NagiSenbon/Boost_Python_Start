@@ -9,6 +9,7 @@
 - [环境](#%E7%8E%AF%E5%A2%83)
 - [编译 Boost 库](#%E7%BC%96%E8%AF%91-boost-%E5%BA%93)
 	- [修改 `user-config.jam` 文件](#%E4%BF%AE%E6%94%B9-user-configjam-%E6%96%87%E4%BB%B6)
+- [引用](#%E5%BC%95%E7%94%A8)
 
 <!-- /TOC -->
 
@@ -17,7 +18,11 @@
 # 前言
 
 [_Boost::Python_](https://wiki.python.org/moin/boost.python) 是 C++ [Boost](https://www.boost.org/) 库中的一个与 Python 交互的模块。[Boost](https://www.boost.org/) 这个库本身有多么神奇就不必多说了，我们还是来谈谈 Boost::Python。
-Python 本身就有一个很好的 Python/C API，可以用于 C/C++ 与 Python 的交互。比如用 C++ 编写一个模块，然后 Python 来调用该模块，这种方式能在保证性能的前提下，又不失 Python 的简单方便。而 Boost::Python 就是一个高度封装好的 Python/C API，它能简化 C++ 代码，使得为 Python 编写 C++ 扩展更为简单方便。出于此原因，我也就开始了我的 Boost::Python 入坑之旅。
+Python 本身就有一个很好的 Python/C API，可以用于 C/C++ 与 Python 的交互。比如用 C++ 编写一个模块，然后 Python 来调用该模块，这种方式能在保证性能的前提下，又不失 [Pythonic](https://docs.python-guide.org/writing/style/)，何乐而不为呢。
+
+>
+
+而 Boost::Python 就是一个高度封装好的 Python/C API，它能简化 C++ 代码，使得为 Python 编写 C++ 扩展更为简单方便。出于此原因，我也就开始了我的 Boost::Python 入坑之旅。
 
 ---
 
@@ -40,4 +45,19 @@ Python 本身就有一个很好的 Python/C API，可以用于 C/C++ 与 Python 
 
 ## 修改 `user-config.jam` 文件
 
-解压之前下载好了的
+解压之前下载好了的 `boost_1_69_0.zip` ( or `boost_1_69_0.7z` ) 文件。打开解压好的`boost_1_69_0`文件夹，在该文件夹下新建一个`user-config.txt`文件，并在里边加上几句话:
+
+```c++
+using msvc : 14.1;
+
+using python	: 3.7
+		: "C:/Users/user name/Anaconda3/python.exe"
+		: "C:/Users/user name/Anaconda3/include"
+		: "C:/Users/user name/Anaconda3/libs" ;
+```
+
+---
+
+# 引用
+
+> [Pythonic Code Style](https://docs.python-guide.org/writing/style/) > [ Zen of Python (PEP 20)](https://www.python.org/dev/peps/pep-0020/)
