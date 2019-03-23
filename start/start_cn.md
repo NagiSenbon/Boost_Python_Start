@@ -22,7 +22,7 @@
 ## 前言
 
 [_Boost::Python_](https://wiki.python.org/moin/boost.python) 是 C++ [Boost](https://www.boost.org/) 库中的一个与 Python 交互的模块。Boost 这个库本身有多么神奇就不必多说了，我们还是来谈谈 Boost::Python。
-Python 本身就有一个很好的 [Python / C API](https://docs.python.org/3/c-api/intro.html)，可用于 Python 与 C / C++ 的交互。比如用 C++ 编写一个模块，然后 Python 来调用该模块，这种方式能在保证性能的前提下，又不失 [Pythonic](https://docs.python-guide.org/writing/style/)，何乐而不为呢。
+Python 本身就有一个很好的 [Python / C API](https://docs.python.org/3/c-api/intro.html)，可用于 Python 与 C / C++ 的交互。例如用 C++ 编写一个模块，然后 Python 来调用该模块。这种方式既能在保证性能的前提下，又不失 [Pythonic](https://docs.python-guide.org/writing/style/)，何乐而不为呢。
 
 > [Python 之禅](http://note.qidong.name/2018/01/the-zen-of-python/)
 >
@@ -36,7 +36,7 @@ Python 本身就有一个很好的 [Python / C API](https://docs.python.org/3/c-
 >
 > **...**
 
-而 Boost::Python 就是一个高度封装好的 Python / C API，它能简化 C++ 代码，使得为 Python 编写 C++ 扩展更为简单方便。出于此原因，我也就开始了我的 Boost::Python 入坑之旅。
+而 Boost::Python 就是一个高度封装好的 Python / C API，它能简化 C++ 代码，使得为 Python 编写 C++ 扩展更为简单方便。甚至还能以 OOP 风格在 C++ 中编写 Python 对象的操作。Pythonic 即为正义╰(￣ω￣ｏ)。因此，我也开始了我的 Boost::Python 入坑之旅。
 
 ---
 
@@ -71,11 +71,11 @@ using python	: 3.7
 		: "C:\Users\user name\Anaconda3\libs" ;
 ```
 
-其中 `using msvc : 14.1` 是指定编译器为 `msvc 14.1` 即 VS 2017，如果是 VS 2015 的话则填 `using msvc : 14.0` 。 `using python` 则是指定 Python 版本及其路径，因为我用的是 Anaconda Python 3.7.2，所以第一处填 3.7，第二处则是 Anaconda 根目录下的 `python.exe` 的目录。第三四处也是在 Anaconda 根目录下，注意顺序和符号填进去就行了。切记版本号和路径填你自己的，别只复制粘贴。保存 `user-config.txt` 文件后并将其后缀修改为 `.jam` ，即 `user-config.jam` 。
+其中 `using msvc : 14.1` 指定编译器为 `msvc 14.1` 即 VS 2017，如果是 VS 2015 的话应填 `using msvc : 14.0` 。 `using python` 则是指定 Python 版本及其路径，因为我用的是 Anaconda Python 3.7.2，所以第一处填 3.7，第二处则是 Anaconda 根目录下的 `python.exe` 的目录。第三四处也都在 Anaconda 根目录下，注意顺序和符号填进去就行了。切记版本号和路径填你自己的，别只复制粘贴。保存 `user-config.txt` 文件后并将其后缀修改为 `.jam` ，即 `user-config.jam` 。
 
 ### 编译
 
-Boost 库提供了编译工具 `b2.exe` 和 `bjam.exe` ，其中 `b2.exe` 为新版本的编译工具，我们使用它来编译 Boost::Python 64 位静态库。在 `boost_1_69_0` 文件夹下打开命令行 ( Powershell 等)，输入以下命令回车即可。
+Boost 库提供了强大的编译工具 `b2.exe` 和 `bjam.exe` ，其中 `b2.exe` 为新版本的编译工具，我们使用它来编译 Boost::Python 64 位静态库。在 `boost_1_69_0` 文件夹下打开命令行 ( Powershell 等)，输入以下命令回车即可。
 
 ```shell
 .\b2 --with-python --prefix="g:\boost" install toolset=msvc-14.1 link=static address-model=64
@@ -109,7 +109,7 @@ Boost 库提供了编译工具 `b2.exe` 和 `bjam.exe` ，其中 `b2.exe` 为新
   指定编译工具，此处我们指定为 `msvc 14.1`，即 VS 2017 的编译器
 
 - `link`
-  即指定编译为动态库还是静态库 ( `.dll | .lib` )，`shared` 即编译为动态库，`static` 即为静态库。我们选择的是编译为静态库。一般而言静态库体积要大一些，但不用带 Boost::Python 的 DLL 文件，部署和使用也较为方便; 动态库的话相对体积较小(也小不了多少)，但必须用带 Boost::Python 的 DLL 文件。选择静态库还是动态库这个得自己取舍。
+  即指定编译为动态库还是静态库 ( `.dll | .lib` )，`shared` 即编译为动态库，`static` 即为静态库，不填则默认编译为静态库。一般而言静态库体积要大一些，但不用带 Boost::Python 的 DLL 文件，部署和使用也较为方便; 动态库的话相对体积较小(也小不了多少)，但必须用带 Boost::Python 的 DLL 文件。选择静态库还是动态库这个得自己取舍。
   ( 小孩子才做选择，我全都要( •̀ ω •́ )✧ )
 
 - `address-model`
@@ -124,8 +124,7 @@ Boost 库提供了编译工具 `b2.exe` 和 `bjam.exe` ，其中 `b2.exe` 为新
 走起 ヾ(•ω•`)o
 
 ### 创建项目
-
-####
+打开 VS 2017 并创建一个空项目，
 
 ---
 

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.489
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloBoostPython", "HelloBoostPython.vcxproj", "{9343796A-E788-4990-90C1-A8BE1A54531E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9343796A-E788-4990-90C1-A8BE1A54531E}.Debug|x64.ActiveCfg = Debug|x64
+		{9343796A-E788-4990-90C1-A8BE1A54531E}.Debug|x64.Build.0 = Debug|x64
+		{9343796A-E788-4990-90C1-A8BE1A54531E}.Debug|x86.ActiveCfg = Debug|Win32
+		{9343796A-E788-4990-90C1-A8BE1A54531E}.Debug|x86.Build.0 = Debug|Win32
+		{9343796A-E788-4990-90C1-A8BE1A54531E}.Release|x64.ActiveCfg = Release|x64
+		{9343796A-E788-4990-90C1-A8BE1A54531E}.Release|x64.Build.0 = Release|x64
+		{9343796A-E788-4990-90C1-A8BE1A54531E}.Release|x86.ActiveCfg = Release|Win32
+		{9343796A-E788-4990-90C1-A8BE1A54531E}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {53BDF970-997E-47B6-BDB1-35B5C6612852}
+	EndGlobalSection
+EndGlobal
