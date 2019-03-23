@@ -1,6 +1,6 @@
 # Boost::Python 入坑随笔 （一）: 编译安装及 Hello World ! (。・∀・)ノ
 
-![](https://github.com/NagiSenbon/Boost_Python_Start/raw/master/pic/Amazarashi.jpg)
+> ![](https://github.com/NagiSenbon/Boost_Python_Start/raw/master/pic/Amazarashi.jpg)
 
 <!-- TOC -->
 
