@@ -175,7 +175,7 @@ const char * hello_world() {
 
 
 // 此处 Hello_Boost 应该与之前设置的目标文件扩展名一致
-// 否则自行尝试 ╮(╯▽╰)╭
+// 否则想知道后果的话请自行尝试 ╮(╯▽╰)╭
 BOOST_PYTHON_MODULE( Hello_Boost ) {
 	using namespace boost::python;
 	def( "hello_boost", hello_boost );
