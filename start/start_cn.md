@@ -16,7 +16,7 @@
 
 # 前言
 
-[_Boost::Python_](https://www.boost.org/doc/libs/1_69_0/libs/python/doc/html/index.html) 是 C++ [Boost](https://www.boost.org/) 库中的一个与 Python 交互的模块。[Boost](https://www.boost.org/) 这个库本身有多么神奇就不必多说了，我们还是来谈谈 Boost::Python。
+[_Boost::Python_](https://wiki.python.org/moin/boost.python) 是 C++ [Boost](https://www.boost.org/) 库中的一个与 Python 交互的模块。[Boost](https://www.boost.org/) 这个库本身有多么神奇就不必多说了，我们还是来谈谈 Boost::Python。
 Python 本身就有一个很好的 Python/C API，可以用于 C/C++ 与 Python 的交互。比如用 C++ 编写一个模块，然后 Python 来调用该模块，这种方式能在保证性能的前提下，又不失 Python 的简单方便。而 Boost::Python 就是一个高度封装好的 Python/C API，它能简化 C++ 代码，使得为 Python 编写 C++ 扩展更为简单方便。出于此原因，我也就开始了我的 Boost::Python 入坑之旅。
 
 ---
@@ -39,4 +39,5 @@ Python 本身就有一个很好的 Python/C API，可以用于 C/C++ 与 Python 
 编译应该是我踩坑过程当中遇到的最为繁杂的一步了，好在现在已经轻车熟路。不要慌，一步一步来。
 
 ## 修改 `user-config.jam` 文件
-解压之前下载好了的 
+
+解压之前下载好了的
