@@ -1,6 +1,6 @@
 # Boost::Python 入坑笔记 （一）
 
-![](./pic/Amazarashi.jpg)
+![](Boost_Python_Start/pic/Amazarashi.jpg)
 
 <!-- TOC -->
 
