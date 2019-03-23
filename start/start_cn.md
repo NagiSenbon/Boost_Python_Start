@@ -1,6 +1,6 @@
 # Boost::Python 入坑随笔 （一）
 
-![](https://raw.githubusercontent.com/NagiSenbon/Boost_Python_Start/master/pic/Amazarashi.jpg?token=AiXozc_KNjHgxGuxE-2n69LvcoHLmmN4ks5claFwwA%3D%3D)
+> ![](https://raw.githubusercontent.com/NagiSenbon/Boost_Python_Start/master/pic/Amazarashi.jpg?token=AiXozc_KNjHgxGuxE-2n69LvcoHLmmN4ks5claFwwA%3D%3D)
 
 <!-- TOC -->
 
@@ -11,6 +11,6 @@
 
 ---
 
-
 # 前言
-众所周知纯 *Python* 慢，而 *C/C++、Java* 等很快，所以也就有了各种用Python
+
+众所周知纯 _Python_ 慢，而 _C/C++、Java_ 等很快，所以也就有了各种用 _Python_ 调用其他语言的黑魔法。
