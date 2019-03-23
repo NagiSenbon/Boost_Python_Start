@@ -8,8 +8,9 @@
 - [前言](#%E5%89%8D%E8%A8%80)
 - [环境](#%E7%8E%AF%E5%A2%83)
 - [编译 Boost 库](#%E7%BC%96%E8%AF%91-boost-%E5%BA%93)
-	- [修改 `user-config.jam` 文件](#%E4%BF%AE%E6%94%B9-user-configjam-%E6%96%87%E4%BB%B6)
-- [引用](#%E5%BC%95%E7%94%A8)
+	- [创建 `user-config.jam` 文件](#%E5%88%9B%E5%BB%BA-user-configjam-%E6%96%87%E4%BB%B6)
+	- [编译](#%E7%BC%96%E8%AF%91)
+- [引用及参考](#%E5%BC%95%E7%94%A8%E5%8F%8A%E5%8F%82%E8%80%83)
 
 <!-- /TOC -->
 
@@ -41,31 +42,53 @@ Python 本身就有一个很好的 [Python / C API](https://docs.python.org/3/c-
 - [Visual Studio 2017 ( msvc v14.16 )](https://visualstudio.microsoft.com/vs/)
 - [Boost 1.69](https://www.boost.org/users/history/version_1_69_0.html)
 
-> 注 : _VS2017_ 和 _Boost 1.69_ 就大家自己去下载吧，链接在上面已经给了。
+注 : _VS 2017_ 和 _Boost 1.69_ 就大家自己去下载吧。
 
 ---
 
 # 编译 Boost 库
 
-编译应该是我踩坑过程当中遇到的最为繁杂的一步了，好在现在已经轻车熟路。不要慌，一步一步来。
+编译应该是我踩坑过程当中遇到的最为繁杂的一步了，好在现在已经轻车熟路。不要慌，一步一步来。实际上 Boost 较早一些的版本是提供了 Windows 下预编译好的二进制包的，比如 [`Boost 1.67`](https://www.boost.org/users/history/version_1_67_0.html)。但是它里边编译好的是 Python 2.7 的，所以想要对应自己 Python 版本的 Boost::Python，还是得自己编译 (￣ ▽ ￣)"
 
-## 修改 `user-config.jam` 文件
+## 创建 `user-config.jam` 文件
 
-解压之前下载好了的 `boost_1_69_0.zip` ( or `boost_1_69_0.7z` ) 文件。打开解压好的`boost_1_69_0`文件夹，在该文件夹下新建一个`user-config.txt`文件，并在里边加上几句话:
+解压之前下载好了的 `boost_1_69_0.zip` ( or `boost_1_69_0.7z` ) 文件。打开解压好的 `boost_1_69_0` 文件夹，在该文件夹下新建一个 `user-config.txt` 文件，并在里边加上几句:
 
 ```cpp
 using msvc : 14.1;
 
+# 路径仅供参考
 using python	: 3.7
-		: "C:/Users/user name/Anaconda3/python.exe"
-		: "C:/Users/user name/Anaconda3/include"
-		: "C:/Users/user name/Anaconda3/libs" ;
+		: "C:\Users\user name\Anaconda3\python.exe"
+		: "C:\Users\user name\Anaconda3\include"
+		: "C:\Users\user name\Anaconda3\libs" ;
 ```
+
+其中 `using msvc : 14.1` 是指定编译器为 `msvc 14.1` 即 VS 2017，如果是 VS 2015 的话则填 `using msvc : 14.0` 。 `using python` 则是指定 Python 版本及其路径，因为我用的是 Anaconda Python 3.7.1，所以第一处填 3.7，第二处则是 Anaconda 根目录下的 `python.exe` 的目录。第三四处也是在 Anaconda 根目录下，注意顺序和符号填进去就行了。切记版本号和路径填你自己的，别只复制粘贴。保存 `user-config.txt` 文件后并将其后缀修改为 `.jam` ，即 `user-config.jam` 。
+
+## 编译
+
+Boost 库提供了编译工具 `b2.exe` 和 `bjam.exe` ，其中 `b2.exe` 为新版本的编译工具，我们使用它来编译 Boost::Python 的 64 位动态库。在 `boost_1_69_0` 文件夹下打开命令行 ( Powershell 等)，输入以下命令回车即可。
+
+- Release 版
+
+```shell
+.\b2 --with-python --prefix="g:\boost" stage toolset=msvc-14.1 variant=release link=shared address-model=64 threading=multi runtime-link=shared install
+```
+
+- Dubug 版
+```shell
+.\b2 --with-python --prefix="g:\boost" stage toolset=msvc-14.1 variant=debug link=shared address-model=64 threading=multi runtime-link=shared install
+```
+
 
 
 ---
 
-# 引用
+# 引用及参考
 
-[Pythonic Code Style](https://docs.python-guide.org/writing/style/)
-[Zen of Python (PEP 20)](https://www.python.org/dev/peps/pep-0020/)
+> [Pythonic Code Style](https://docs.python-guide.org/writing/style/)
+>
+> [Zen of Python (PEP 20)](https://www.python.org/dev/peps/pep-0020/)
+>
+> [C++与 Python 混合编程：Boost.python 的安装与使用](https://blog.csdn.net/HaleyPKU/article/details/82911669)
