@@ -10,6 +10,7 @@
 - [编译 Boost 库](#%E7%BC%96%E8%AF%91-boost-%E5%BA%93)
 	- [创建 `user-config.jam` 文件](#%E5%88%9B%E5%BB%BA-user-configjam-%E6%96%87%E4%BB%B6)
 	- [编译](#%E7%BC%96%E8%AF%91)
+		- [b2 / bjam 部分命令参数说明 :](#b2--bjam-%E9%83%A8%E5%88%86%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E)
 - [引用及参考](#%E5%BC%95%E7%94%A8%E5%8F%8A%E5%8F%82%E8%80%83)
 
 <!-- /TOC -->
@@ -68,20 +69,43 @@ using python	: 3.7
 
 ## 编译
 
-Boost 库提供了编译工具 `b2.exe` 和 `bjam.exe` ，其中 `b2.exe` 为新版本的编译工具，我们使用它来编译 Boost::Python 的 64 位动态库。在 `boost_1_69_0` 文件夹下打开命令行 ( Powershell 等)，输入以下命令回车即可。
+Boost 库提供了编译工具 `b2.exe` 和 `bjam.exe` ，其中 `b2.exe` 为新版本的编译工具，我们使用它来编译 Boost::Python 64位静态库。在 `boost_1_69_0` 文件夹下打开命令行 ( Powershell 等)，输入以下命令回车即可。
+
+```shell
+.\b2 --with-python --prefix="g:\boost" install toolset=msvc-14.1 link=static address-model=64
+```
+该指令会同时编译 `Release` 和 `Dubug` 版本，若要单独编译某一个版本，则可使用以下指令:
 
 - Release 版
 
 ```shell
-.\b2 --with-python --prefix="g:\boost" stage toolset=msvc-14.1 variant=release link=shared address-model=64 threading=multi runtime-link=shared install
+.\b2 --with-python --prefix="g:\boost" install toolset=msvc-14.1 variant=release link=static address-model=64
 ```
 
 - Dubug 版
+
 ```shell
-.\b2 --with-python --prefix="g:\boost" stage toolset=msvc-14.1 variant=debug link=shared address-model=64 threading=multi runtime-link=shared install
+.\b2 --with-python --prefix="g:\boost" install toolset=msvc-14.1 variant=debug link=static address-model=64
 ```
 
+注:由于还要复制各种头文件，所以总耗时大概 10 ~ 20 min。
 
+### b2 / bjam 部分命令参数说明 :
+
+- `--with-` | `--without-`
+  `--with-` 后面接要编译的 Boost 的库名，如 `--with-python` 即仅编译 Boost::Python 库。相对的，`--without-python` 即为编译除 Boost::Python 之外全部库。如果要编译 ( 或不编译 ) 多个库的话，可用多条 `with | without` 语句来指定，缺省则为全部编译。
+
+- `install` | `stage`
+  `stage` 即只生成库，而 `install` 还会生成 `include` 目录。通过 `--prefix="g:\boost"` 指定 `install` 生成好的库的路径为 `"g:\boost"`。如果是 `stage` 则由 `--stagedir=` 来指定。
+
+- `toolset`
+  指定编译工具，此处我们指定为 `msvc 14.1`，即 VS 2017 的编译器
+
+- `link`
+  即指定编译为动态库还是静态库 ( `.dll | .lib` )，`shared` 即编译为动态库，`static` 即为静态库。我们选择的是编译为静态库。一般而言静态库体积要大一些，但不用带 Boost::Python 的 DLL 文件，部署和使用也较为方便; 动态库的话相对体积较小(也小不了多少)，但必须用带 Boost::Python 的 DLL 文件。选择静态库还是动态库这个得自己取舍。
+
+- `address-model`
+  指定编译为32位还是64位，我们指定 `address-model=64` 即编译为64位。
 
 ---
 
