@@ -213,7 +213,7 @@ include\boost\python\detail\unwind_type.hpp
 
 ![](https://github.com/NagiSenbon/Boost_Python_Start/raw/master/pic/start/terminal.png)
 
-如果你也看到如上结果，那恭喜你成功啦 o(_￣ ▽ ￣_)o
+如果你也看到如上结果，那恭喜你成功啦 _o(￣ ▽ ￣)o_
 Boost::Python 踩坑第一阶段完成！完整代码可在 [Here](https://github.com/NagiSenbon/Boost_Python_Start/tree/master/start/HelloBoostPython) 找到，如果大家觉得我的文章有用的话，不妨给个 Star (o ゜ ▽ ゜)o☆
 
 ---
