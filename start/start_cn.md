@@ -189,7 +189,7 @@ BOOST_PYTHON_MODULE( Hello_Boost ) {
 error C3861: 'unwind_type': identifier not found
 ```
 
-如果用的是最新版的 VS 2017 的话，肯定会碰上这个问题，这个问题似乎只会发生在 `msvc 14.16` 及以上的版本中。不要慌，问题不大，因为我在 [Github](https://github.com/boostorg/python/issues/228) 中找到了解决方法。
+如果用的是最新版的 VS 2017 的话，肯定会碰上这个问题，这个问题似乎只会发生在 `msvc 14.16` 及以上的版本中。不要慌，问题不大，因为我在 [Github](https://github.com/boostorg/python/issues/228) 中找到了解决方法。( •̀ ω •́ )y
 
 ```py
 include / boost / python / detail / unwind_type.hpp
