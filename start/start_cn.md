@@ -205,9 +205,16 @@ include / boost / python / detail / unwind_type.hpp
 
 找到上边这个文件，将里边所有的 `#ifndef _MSC_VER` 改为 `#if (!defined(_MSC_VER) || _MSC_VER >= 1915)`，具体可参考 [Here](https://github.com/bowie7070/python/commit/58a096bead4d9a43209ea86886f634e02a706914)。
 这样编译应该就没问题了，编译后会生成一个 `Hello_Boost.pyd` 文件，即 Python 的动态链接库文件。可能还会遇到下面这个错误，忽略即可（￣︶￣）↗　
-![]()
 
-在 `Hello_Boost.pyd` 该文件
+![](https://github.com/NagiSenbon/Boost_Python_Start/raw/master/pic/start/error.png)
+
+在 `Hello_Boost.pyd` 该文件路径下打开 Powershell，进入 Python 交互式命令窗口，`import` 那个 `.pyd` 文件 (b不用加后缀)，我们来测试一波~
+
+![](https://github.com/NagiSenbon/Boost_Python_Start/raw/master/pic/start/terminal.png)
+
+如果你也看到如上结果，那恭喜你成功啦o(*￣▽￣*)o
+Boost::Python 踩坑第一阶段完成！
+
 
 ---
 
