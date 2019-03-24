@@ -209,7 +209,7 @@ include\boost\python\detail\unwind_type.hpp
 
 ![](https://github.com/NagiSenbon/Boost_Python_Start/raw/master/pic/start/error.png)
 
-在 `Hello_Boost.pyd` 该文件路径下打开 Powershell，进入 Python 交互式命令窗口，`import` 那个 `.pyd` 文件 (b 不用加后缀)，我们来测试一波~
+在 `Hello_Boost.pyd` 该文件路径下打开 Powershell，进入 Python 交互式命令窗口，`import` 那个 `.pyd` 文件 (不用加后缀)，我们来测试一波~
 
 ![](https://github.com/NagiSenbon/Boost_Python_Start/raw/master/pic/start/terminal.png)
 
