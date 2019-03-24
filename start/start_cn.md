@@ -205,17 +205,16 @@ include / boost / python / detail / unwind_type.hpp
 
 找到上边这个文件，将里边所有的 `#ifndef _MSC_VER` 改为 `#if (!defined(_MSC_VER) || _MSC_VER >= 1915)`，具体可参考 [Here](https://github.com/bowie7070/python/commit/58a096bead4d9a43209ea86886f634e02a706914)
 
-这样编译应该就没问题了，编译后会生成一个 `Hello_Boost.pyd` 文件，即 Python 的动态链接库文件。可能还会遇到下面这个错误，忽略即可（￣︶￣）↗　
+这样编译应该就没问题了，编译后会生成一个 `Hello_Boost.pyd` 文件，即 Python 的动态链接库文件。可能还会遇到下面这个错误，忽略即可（￣︶￣）↗
 
 ![](https://github.com/NagiSenbon/Boost_Python_Start/raw/master/pic/start/error.png)
 
-在 `Hello_Boost.pyd` 该文件路径下打开 Powershell，进入 Python 交互式命令窗口，`import` 那个 `.pyd` 文件 (b不用加后缀)，我们来测试一波~
+在 `Hello_Boost.pyd` 该文件路径下打开 Powershell，进入 Python 交互式命令窗口，`import` 那个 `.pyd` 文件 (b 不用加后缀)，我们来测试一波~
 
 ![](https://github.com/NagiSenbon/Boost_Python_Start/raw/master/pic/start/terminal.png)
 
-如果你也看到如上结果，那恭喜你成功啦o(*￣▽￣*)o
-Boost::Python 踩坑第一阶段完成！完整代码可在 [Here](https://github.com/NagiSenbon/Boost_Python_Start/tree/master/start/HelloBoostPython) 找到，如果大家觉得我的文章有用的话，不妨给个 Star (o゜▽゜)o☆
-
+如果你也看到如上结果，那恭喜你成功啦 o(_￣ ▽ ￣_)o
+Boost::Python 踩坑第一阶段完成！完整代码可在 [Here](https://github.com/NagiSenbon/Boost_Python_Start/tree/master/start/HelloBoostPython) 找到，如果大家觉得我的文章有用的话，不妨给个 Star (o ゜ ▽ ゜)o☆
 
 ---
 
@@ -225,7 +224,6 @@ Boost::Python 踩坑第一阶段完成！完整代码可在 [Here](https://githu
 >
 > [Zen of Python (PEP 20)](https://www.python.org/dev/peps/pep-0020/)
 >
->[Boost.Python
-](https://wiki.python.org/moin/boost.python/GettingStarted)
+> [Boost.Python](https://wiki.python.org/moin/boost.python/GettingStarted)
 >
 > [C++与 Python 混合编程：Boost.python 的安装与使用](https://blog.csdn.net/HaleyPKU/article/details/82911669)
