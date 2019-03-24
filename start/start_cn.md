@@ -127,14 +127,22 @@ Boost 库提供了强大的编译工具 `b2.exe` 和 `bjam.exe` ，其中 `b2.ex
 ### 创建项目并配置 Boost::Python
 
 打开 VS 2017 并创建一个 C++ 空项目 `HelloBoostPython`
+
 ![](https://github.com/NagiSenbon/Boost_Python_Start/raw/master/pic/start/Hello_Preject.png)
+
 将工具栏那的改为 `Release x64`
 ![](https://github.com/NagiSenbon/Boost_Python_Start/raw/master/pic/start/Release_x64.png)
+
 接下来打开项目属性，即解决方案管理器中选择该项目 右键->属性
+
 ![](https://github.com/NagiSenbon/Boost_Python_Start/raw/master/pic/start/Solutions.png)
+
 在 配置属性->常规 中修改目标文件名( `Hello_Boost` )及其扩展名( `.pyd` )，配置类型改为 `动态库(.dll)`
+
 ![](https://github.com/NagiSenbon/Boost_Python_Start/raw/master/pic/start/Set.png)
+
 然后转到 配置属性->VC++目录
+
 ![](https://github.com/NagiSenbon/Boost_Python_Start/raw/master/pic/start/includePath.png)
 
 - 包含目录中加上 Anaconda 安装目录中的 `include` 目录，以及之前编译时`--prefix="g:\boost"` 指定的那个目录下的 `\include\boost-1_69` ,如下所示:
