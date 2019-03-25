@@ -1,10 +1,10 @@
-# Boost::Python 入坑随笔 （一）: 编译安装及 Hello World ! (。・∀・)ノ
+# Boost::Python 入坑随笔 (一): 编译安装及 Hello World ! (。・∀・)ノ
 
 > ![](https://github.com/NagiSenbon/Boost_Python_Start/raw/master/pic/Amazarashi.jpg)
 
 <!-- TOC -->
 
-- [Boost::Python 入坑随笔 （一）: 编译安装及 Hello World ! (。・∀・)ノ](#boostpython-%E5%85%A5%E5%9D%91%E9%9A%8F%E7%AC%94-%E4%B8%80-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E5%8F%8A-hello-world--%E3%83%BB%E2%88%80%E3%83%BB%E3%83%8E)
+- [Boost::Python 入坑随笔 (一): 编译安装及 Hello World ! (。・∀・)ノ](#boostpython-%E5%85%A5%E5%9D%91%E9%9A%8F%E7%AC%94-%E4%B8%80-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E5%8F%8A-hello-world--%E3%83%BB%E2%88%80%E3%83%BB%E3%83%8E)
 	- [前言](#%E5%89%8D%E8%A8%80)
 	- [环境](#%E7%8E%AF%E5%A2%83)
 	- [编译 Boost 库](#%E7%BC%96%E8%AF%91-boost-%E5%BA%93)
